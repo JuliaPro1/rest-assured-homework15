@@ -10,12 +10,13 @@ public class RegresInTests extends TestBase{
 
     @Test
     @DisplayName("Проверка списка юзеров")
-    void checkListUsers(){
+    void checkListUsersTest(){
         given()
                 .header("x-api-key", "reqres-free-v1")
                 .log().uri()
                 .when()
-                .get("/users?page=2")
+                .queryParam("page", "2")
+                .get("/users")
                 .then()
                 .log().status()
                 .log().body()
@@ -26,7 +27,7 @@ public class RegresInTests extends TestBase{
 
     @Test
     @DisplayName("Создание нового юзера")
-    void checkCreateNewUser(){
+    void checkCreateNewUserTest(){
         String newUser = "{\"name\": \"morpheus\", \"job\": \"leader\"}";
 
         given()
@@ -46,7 +47,7 @@ public class RegresInTests extends TestBase{
 
     @Test
     @DisplayName("Изменение юзера PUT")
-    void checkUpdateUserPut(){
+    void checkUpdateUserPutTest(){
         String updateUserPut = "{\"name\": \"mikel\", \"job\": \"zion resident\"}";
 
         given()
@@ -66,7 +67,7 @@ public class RegresInTests extends TestBase{
 
     @Test
     @DisplayName("Изменение юзера PATCH")
-    void checkUpdateUserPatch(){
+    void checkUpdateUserPatchTest(){
         String updateUserPut = "{\"name\": \"mia\", \"job\": \"resident\"}";
 
         given()
@@ -86,7 +87,7 @@ public class RegresInTests extends TestBase{
 
     @Test
     @DisplayName("Удаление юзера")
-    void checkDeleteUser(){
+    void checkDeleteUserTest(){
 
         given()
                 .header("x-api-key", "reqres-free-v1")
